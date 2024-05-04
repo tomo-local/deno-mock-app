@@ -40,6 +40,9 @@ export const handler: Handlers = {
 export default function PokemonList(props: PageProps) {
   const page = Number(props.url.searchParams.get("page")) || 1;
 
+  console.log("=====>", props?.data);
+
+
   return (
     <div className="h-screen w-full bg-gray-100">
       <div className="container py-8 mx-auto">
@@ -47,7 +50,7 @@ export default function PokemonList(props: PageProps) {
           ポケモン図鑑
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {props.data.map((pokemon: PokemonListItemCustom, index: number) => (
+          {props?.data?.map((pokemon: PokemonListItemCustom, index: number) => (
             <div
               key={index}
               className="relative bg-white rounded-lg shadow-md overflow-hidden"
