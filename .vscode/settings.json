@@ -25,5 +25,5 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
-  },
+  }
 }
