@@ -15,12 +15,7 @@ export const handler: Handlers = {
     url.searchParams.set("limit", String(limit));
     url.searchParams.set("offset", String(offset));
 
-    const response = await fetch(url.toString(), {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    });
+    const response = await fetch(url.toString());
 
     console.log("response", response);
 
