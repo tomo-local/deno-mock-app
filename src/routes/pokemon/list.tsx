@@ -27,10 +27,6 @@ export const handler: Handlers = {
 
     const data = await response.json();
 
-    if (!data) {
-      return ctx.render("Failed to fetch Pokemon list", { status: 500 });
-    }
-
     const resp = await ctx.render(data);
 
     return resp;
@@ -39,9 +35,6 @@ export const handler: Handlers = {
 
 export default function PokemonList(props: PageProps) {
   const page = Number(props.url.searchParams.get("page")) || 1;
-
-  console.log("=====>", props?.data);
-
 
   return (
     <div className="h-screen w-full bg-gray-100">
