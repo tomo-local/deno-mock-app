@@ -10,5 +10,8 @@ export const handler = async (
 
   const body = await getCustomPokemonList({ limit: limit, offset: offset });
 
+  console.log("===custom.ts.body====", body);
+
+
   return new Response(JSON.stringify(body), { status: 200 });
 };
