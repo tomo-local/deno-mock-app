@@ -10,12 +10,5 @@ export const handler = async (
 
   const body = await getCustomPokemonList({ limit: limit, offset: offset });
 
-  if (!body) {
-    return new Response("Failed to fetch Pokemon list", { status: 500 });
-  }
-
-  console.log("==== pokemon",body);
-
-
-  return new Response(JSON.stringify(body));
+  return new Response(JSON.stringify(body), { status: 200 });
 };

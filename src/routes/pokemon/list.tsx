@@ -14,13 +14,18 @@ export const handler: Handlers = {
     url.searchParams.set("limit", String(limit));
     url.searchParams.set("offset", String(offset));
 
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString(), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    });
 
-    const data = await response.json();
-
-    if (!data) {
+    if (response.status !== 200) {
       return ctx.render("Failed to fetch Pokemon list", { status: 500 });
     }
+
+    const data = await response.json();
 
     const resp = await ctx.render(data);
 
@@ -38,7 +43,7 @@ export default function PokemonList(props: PageProps) {
           ポケモン図鑑
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {props.data.map((pokemon: PokemonListItemCustom, index: number) => (
+          {props?.data?.map((pokemon: PokemonListItemCustom, index: number) => (
             <div
               key={index}
               className="relative bg-white rounded-lg shadow-md overflow-hidden"
