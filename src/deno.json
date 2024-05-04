@@ -1,19 +1,21 @@
 {
+  "deploy": {
+    "project": "82569535-ec7e-431c-ac00-c4a994d5df33",
+    "exclude": ["**/node_modules"],
+    "include": [],
+    "entrypoint": "src/main.ts"
+  },
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
     "manifest": "deno task cli manifest $(pwd)",
-    "start": "deno run -A --watch=src/static/,src/routes/ src/dev.ts",
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
-    "preview": "deno run -A src/main.ts",
+    "preview": "deno run -A main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
-  "lint": {
-    "rules": {
-      "tags": ["fresh", "recommended"]
-    }
-  },
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
   "exclude": ["**/_fresh/*"],
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.6.8/",
@@ -23,14 +25,5 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "$std/": "https://deno.land/std@0.216.0/"
   },
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
-  "deploy": {
-    "project": "82569535-ec7e-431c-ac00-c4a994d5df33",
-    "exclude": ["**/node_modules"],
-    "include": [],
-    "entrypoint": "src/main.ts"
-  }
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }

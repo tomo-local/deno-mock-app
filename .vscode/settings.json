@@ -1,0 +1,29 @@
+{
+  "deno.config": "/Users/tomo/Local/language/deno/app/mock/src/deno.json",
+  "deno.unstable": true,
+  "deno.codeLens.implementations": true,
+  "deno.codeLens.references": true,
+  "deno.codeLens.referencesAllFunctions": true,
+  "deno.cacheOnSave": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["/deno.json"],
+      "url": "https://deno.land/x/deno/cli/schemas/config-file.v1.json"
+    }
+  ],
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+}
