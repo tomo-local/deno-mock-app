@@ -10,7 +10,7 @@ export const handler: Handlers = {
     const limit = ctx.url.searchParams.get("limit") || 20;
     const offset = (Number(page) - 1) * Number(limit);
 
-    const url = new URL(`${ctx.url.origin}/api/pokemon/custom`);
+    const url = new URL("/api/pokemon/custom", _req.url);
 
     url.searchParams.set("limit", String(limit));
     url.searchParams.set("offset", String(offset));
