@@ -1,8 +1,8 @@
 import { PageProps } from "$fresh/server.ts";
 import { Handlers } from "$fresh/server.ts";
+import { getCustomPokemonList } from "@/api/resolver/pokemon.ts"
 
 import { PokemonListItemCustom } from "@/types/custom.ts";
-import { denoPlugins } from "$fresh/src/build/deps.ts";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
@@ -10,22 +10,7 @@ export const handler: Handlers = {
     const limit = ctx.url.searchParams.get("limit") || 20;
     const offset = (Number(page) - 1) * Number(limit);
 
-    const url = new URL("/api/pokemon/custom", _req.url);
-
-    url.searchParams.set("limit", String(limit));
-    url.searchParams.set("offset", String(offset));
-
-    const response = await fetch(url.toString());
-
-    console.log("response", response);
-
-    if (response.status !== 200) {
-      return ctx.render("Failed to fetch Pokemon list", { status: 500 });
-    }
-
-    console.log("response", response);
-
-    const data = await response.json();
+    const data = await getCustomPokemonList({ limit, offset });
 
     console.log("data", data);
 
