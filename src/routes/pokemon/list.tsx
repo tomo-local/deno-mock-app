@@ -7,7 +7,7 @@ import { PokemonListItemCustom } from "@/types/custom.ts";
 export const handler: Handlers = {
   async GET(_req, ctx) {
     const page = ctx.url.searchParams.get("page") || 1;
-    const limit = ctx.url.searchParams.get("limit") || 20;
+    const limit = Number(ctx.url.searchParams.get("limit")) || 20;
     const offset = (Number(page) - 1) * Number(limit);
 
     const data = await getCustomPokemonList({ limit, offset });
