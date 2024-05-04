@@ -13,10 +13,10 @@ export interface Pokemon {
     speed: number;
   };
   sprites: {
-    frontDefault: string;
-    frontShiny: string;
-    backDefault: string;
-    backShiny: string;
+    front_default: string;
+    front_shiny: string;
+    back_default: string;
+    back_shiny: string;
   };
 }
 
