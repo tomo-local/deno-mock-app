@@ -28,7 +28,11 @@ export const handler: Handlers = {
       return ctx.render("Failed to fetch Pokemon list", { status: 500 });
     }
 
+    console.log("response", response);
+
     const data = await response.json();
+
+    console.log("data", data);
 
     const resp = await ctx.render(data);
 
