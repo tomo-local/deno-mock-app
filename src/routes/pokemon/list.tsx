@@ -9,7 +9,7 @@ export const handler: Handlers = {
     const limit = ctx.url.searchParams.get("limit") || 20;
     const offset = (Number(page) - 1) * Number(limit);
 
-    const url = new URL(`${ctx.url.origin}/api/pokemon/custom`);
+    const url = new URL(`${ctx.url.origin}/api/pokemon`);
 
     url.searchParams.set("limit", String(limit));
     url.searchParams.set("offset", String(offset));
@@ -49,14 +49,14 @@ export default function PokemonList(props: PageProps) {
               className="relative bg-white rounded-lg shadow-md overflow-hidden"
             >
               <div className="text-center">
-                <span className="absolute top-0 left-0 bg-gray-800 text-white px-2 py-1 rounded-md">
+                {/* <span className="absolute top-0 left-0 bg-gray-800 text-white px-2 py-1 rounded-md">
                   ID: {pokemon.id}
-                </span>
-                <img
+                </span> */}
+                {/* <img
                   src={pokemon.image}
                   alt={pokemon.name}
                   className="w-48 h-48 mx-auto"
-                />
+                /> */}
                 <div className="p-4">
                   <h2 className="text-xl font-semibold mb-2">{pokemon.name}</h2>
                 </div>
