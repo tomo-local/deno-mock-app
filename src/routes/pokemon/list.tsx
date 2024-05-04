@@ -2,6 +2,7 @@ import { PageProps } from "$fresh/server.ts";
 import { Handlers } from "$fresh/server.ts";
 
 import { PokemonListItemCustom } from "@/types/custom.ts";
+import { denoPlugins } from "$fresh/src/build/deps.ts";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
@@ -20,6 +21,8 @@ export const handler: Handlers = {
       },
       method: "GET",
     });
+
+    console.log("response", response);
 
     if (response.status !== 200) {
       return ctx.render("Failed to fetch Pokemon list", { status: 500 });
