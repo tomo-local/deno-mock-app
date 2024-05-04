@@ -9,7 +9,7 @@ export const handler: Handlers = {
     const limit = ctx.url.searchParams.get("limit") || 20;
     const offset = (Number(page) - 1) * Number(limit);
 
-    const url = new URL(`${ctx.url.origin}/api/pokemon`);
+    const url = new URL("https://pokeapi.co/api/v2/pokemon");
 
     url.searchParams.set("limit", String(limit));
     url.searchParams.set("offset", String(offset));
