@@ -153,4 +153,4 @@ export type PokemonEndpointType =
   | "pokemon-species"
   | "stat"
   | "type"
-  | "language"
+  | "language";

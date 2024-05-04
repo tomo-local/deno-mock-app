@@ -1,7 +1,7 @@
 import {
+  Pokemon,
   PokemonEndpointType,
   PokemonSpecies,
-  Pokemon,
 } from "@/types/pokemon.ts";
 import { PokemonListItemCustom } from "@/types/custom.ts";
 
@@ -31,7 +31,7 @@ export function makePokemonUrl({
 export function getSlackModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
-  lang: string = "ja"
+  lang: string = "ja",
 ): PokemonListItemCustom {
   return {
     id: pokemon.id.toString().padStart(4, "0"),
