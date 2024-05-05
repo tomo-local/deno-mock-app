@@ -32,8 +32,10 @@ export function makePokemonUrl({
 export function getPokemonModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
-  lang: string = "ja",
+  lang: string,
 ): PokemonListItemCustom {
+  lang = lang || "ja";
+
   return {
     id: pokemon.id.toString().padStart(4, "0"),
     name: species.names.find((name) => name.language.name === lang)?.name || "",
