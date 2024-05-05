@@ -31,4 +31,8 @@ jobs:
         with:
           project: "tomo-mock"
           entrypoint: "main.ts"
+<<<<<<< HEAD
           root: "./src"
+=======
+          root: "src/"
+>>>>>>> main
