@@ -45,8 +45,10 @@ export function getPokemonDetailModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
   types: PokemonType[],
-  lang: string = "ja",
+  lang: string,
 ) {
+  lang = lang || "ja";
+
   return {
     id: pokemon.id.toString().padStart(4, "0"),
     name: species.names.find((n) => n.language.name === lang)?.name || "",

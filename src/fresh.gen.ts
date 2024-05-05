@@ -13,7 +13,7 @@ import * as $index from "./routes/index.tsx";
 import * as $pokemon_id_ from "./routes/pokemon/[id].tsx";
 import * as $pokemon_list from "./routes/pokemon/list.tsx";
 import * as $Counter from "./islands/Counter.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import { type Manifest as _Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
@@ -32,6 +32,6 @@ const manifest = {
     "./islands/Counter.tsx": $Counter,
   },
   baseUrl: import.meta.url,
-} satisfies Manifest;
+} satisfies _Manifest;
 
 export default manifest;
