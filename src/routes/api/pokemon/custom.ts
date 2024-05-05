@@ -1,5 +1,5 @@
 import { FreshContext } from "$fresh/server.ts";
-import { getCustomPokemonList } from "@/api/resolver/pokemon.ts";
+import { getCustomPokemonList } from "@/api/pokemon/list.ts";
 
 export const handler = async (
   _req: Request,
@@ -10,9 +10,5 @@ export const handler = async (
 
   const body = await getCustomPokemonList({ limit: limit, offset: offset });
 
-  if (!body) {
-    return new Response("Failed to fetch Pokemon list", { status: 500 });
-  }
-
-  return new Response(JSON.stringify(body));
+  return new Response(JSON.stringify(body), { status: 200 });
 };
