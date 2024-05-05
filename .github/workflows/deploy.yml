@@ -1,9 +1,15 @@
 name: Deploy
 on:
   push:
-    branches: main
+    branches: [
+      main,
+      develop
+    ]
   pull_request:
-    branches: main
+    branches: [
+      main,
+      develop
+    ]
 
 jobs:
   deploy:
@@ -31,4 +37,8 @@ jobs:
         with:
           project: "tomo-mock"
           entrypoint: "main.ts"
+<<<<<<< HEAD
+          root: "./src"
+=======
           root: "src/"
+>>>>>>> main
