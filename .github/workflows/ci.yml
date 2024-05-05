@@ -12,4 +12,4 @@ jobs:
           deno-version: "1.21.0"
       - name: Run check
         run: |
-          cd src/ && deno task check
+          deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx
