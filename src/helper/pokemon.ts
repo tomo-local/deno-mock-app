@@ -32,7 +32,7 @@ export function makePokemonUrl({
 export function getPokemonModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
-  lang: string,
+  lang?: string,
 ): PokemonListItemCustom {
   lang = lang || "ja";
 
@@ -47,7 +47,7 @@ export function getPokemonDetailModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
   types: PokemonType[],
-  lang: string,
+  lang?: string,
 ) {
   lang = lang || "ja";
 
