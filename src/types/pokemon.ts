@@ -5,7 +5,7 @@ export interface Pokemon {
   abilities: string[];
   height: number;
   weight: number;
-  baseExperience: number;
+  base_experience: number;
   stats: {
     hp: number;
     attack: number;
@@ -22,7 +22,13 @@ export interface Pokemon {
 
 export interface PokemonType {
   id: number;
-  name: string;
+  names: {
+    name: string;
+    language: {
+      name: string;
+      url: string;
+    };
+  }[];
   damage_relations: {
     double_damage_from: {
       name: string;
@@ -154,3 +160,16 @@ export type PokemonEndpointType =
   | "stat"
   | "type"
   | "language";
+
+export interface PokemonListItemCustom {
+  id: string;
+  name: string;
+  image: string;
+}
+
+export interface PokemonListResponseCustom {
+  count: number;
+  next: string;
+  previous: string;
+  results: PokemonListItemCustom[];
+}

@@ -1,5 +1,5 @@
 import { FreshContext } from "$fresh/server.ts";
-import { getPokemonList } from "@/api/resolver/pokemon.ts";
+import { getPokemonList } from "@/api/pokemon/list.ts";
 
 export const handler = async (
   _req: Request,

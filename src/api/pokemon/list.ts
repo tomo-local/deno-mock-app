@@ -1,6 +1,5 @@
-import { PokemonListItem } from "@/types/pokemon.ts";
-import { PokemonListItemCustom } from "@/types/custom.ts";
-import { getSlackModel, makePokemonUrl } from "@/helper/pokemon.ts";
+import { PokemonListItem, PokemonListItemCustom } from "@/types/pokemon.ts";
+import { getPokemonModel, makePokemonUrl } from "@/helper/pokemon.ts";
 
 export async function getPokemonList({
   limit,
@@ -44,6 +43,6 @@ export async function getCustomPokemonList({
   ).then(async (res) => await Promise.all(res.map((res) => res.json())));
 
   return pokemonData.map((pokemon, index) => {
-    return getSlackModel(pokemon, speciesData[index]);
+    return getPokemonModel(pokemon, speciesData[index]);
   });
 }
