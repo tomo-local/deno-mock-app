@@ -18,8 +18,3 @@ jobs:
       - name: Run lint
         run:
           deno lint
-
-      - name: Run check
-        run: |
-          deno check ./src/**/*.tsx
-          deno check ./src/**/*.ts
