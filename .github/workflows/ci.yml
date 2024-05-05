@@ -10,9 +10,6 @@ jobs:
       - uses: denoland/setup-deno@main
         with:
           deno-version: "1.21.0"
-      - name: Run fmt
+      - name: Run check
         run: |
-          deno fmt --check
-      - name: Run lint
-        run: |
-          deno lint
+          cd src/ && deno task check
