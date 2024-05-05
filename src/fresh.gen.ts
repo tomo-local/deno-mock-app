@@ -10,6 +10,7 @@ import * as $api_pokemon_custom from "./routes/api/pokemon/custom.ts";
 import * as $api_pokemon_index from "./routes/api/pokemon/index.ts";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $pokemon_id_ from "./routes/pokemon/[id].tsx";
 import * as $pokemon_list from "./routes/pokemon/list.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -24,6 +25,7 @@ const manifest = {
     "./routes/api/pokemon/index.ts": $api_pokemon_index,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/pokemon/[id].tsx": $pokemon_id_,
     "./routes/pokemon/list.tsx": $pokemon_list,
   },
   islands: {
