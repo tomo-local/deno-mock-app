@@ -21,7 +21,7 @@ export interface Pokemon {
   cries: {
     latest: string;
     legacy: string;
-  }
+  };
 }
 
 export interface PokemonType {
