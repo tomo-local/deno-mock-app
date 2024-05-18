@@ -1,6 +1,5 @@
 import { PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-
 import Navigation from "@/components/common/Navigation.tsx";
 
 export default function Layout({ Component }: PageProps) {
