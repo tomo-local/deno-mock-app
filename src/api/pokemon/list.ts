@@ -1,5 +1,5 @@
 import { PokemonListItem, PokemonListItemCustom } from "@/types/pokemon.ts";
-import { getPokemonModel, makePokemonUrl } from "@/helper/pokemon.ts";
+import { getPokemonModel, makePokemonApiUrl } from "@/helper/pokemon.ts";
 
 export async function getPokemonList({
   limit,
@@ -8,7 +8,7 @@ export async function getPokemonList({
   limit: number;
   offset: number;
 }): Promise<PokemonListItem[]> {
-  const url = makePokemonUrl({ type: "pokemon", limit, offset });
+  const url = makePokemonApiUrl({ type: "pokemon", limit, offset });
 
   const response = await fetch(url.toString());
 
@@ -34,13 +34,15 @@ export async function getCustomPokemonList({
     pokemonRes.map((res) => fetch(res.url)),
   ).then(async (res) => await Promise.all(res.map((res) => res.json())));
 
+  const pokemonUrls = pokemonData.map((pokemon) => pokemon.species.url);
+
+  const executeSpecies = await Promise.all(
+    pokemonUrls.map((url) => fetch(url)),
+  );
+
   const speciesData = await Promise.all(
-    pokemonRes.map((res) =>
-      fetch(
-        makePokemonUrl({ type: "pokemon-species", id: res.name }).toString(),
-      )
-    ),
-  ).then(async (res) => await Promise.all(res.map((res) => res.json())));
+    executeSpecies.filter((res) => res.ok).map((res) => res.json()),
+  );
 
   return pokemonData.map((pokemon, index) => {
     return getPokemonModel(pokemon, speciesData[index]);

@@ -18,6 +18,10 @@ export interface Pokemon {
     back_default: string;
     back_shiny: string;
   };
+  cries: {
+    latest: string;
+    legacy: string;
+  };
 }
 
 export interface PokemonType {
@@ -165,6 +169,7 @@ export interface PokemonListItemCustom {
   id: string;
   name: string;
   image: string;
+  cry: string;
 }
 
 export interface PokemonListResponseCustom {

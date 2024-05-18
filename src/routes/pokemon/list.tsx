@@ -3,6 +3,8 @@ import { Handlers } from "$fresh/server.ts";
 import { getCustomPokemonList } from "@/api/pokemon/list.ts";
 import { PokemonListItemCustom } from "@/types/pokemon.ts";
 
+import PokemonView from "@/islands/PokemonView.tsx";
+
 export const handler: Handlers = {
   async GET(_req, ctx) {
     const page = ctx.url.searchParams.get("page") || 1;
@@ -20,26 +22,24 @@ export default function PokemonList(props: PageProps) {
   const page = Number(props.url.searchParams.get("page")) || 1;
 
   return (
-    <div className="h-screen w-full bg-gray-100">
+    <div className="bg-gray-100">
       <div className="container py-8 mx-auto">
         <h1 className="text-3xl font-semibold mb-8 text-center">
           ポケモン図鑑
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {props?.data?.map((pokemon: PokemonListItemCustom, index: number) => (
+          {props?.data?.map((pokemon: PokemonListItemCustom) => (
             <div
-              key={index}
+              key={pokemon.id}
               className="relative bg-white rounded-lg shadow-md overflow-hidden"
             >
               <div className="text-center">
                 <span className="absolute top-0 left-0 bg-gray-800 text-white px-2 py-1 rounded-md">
                   ID: {pokemon.id}
                 </span>
-                <img
-                  src={pokemon.image}
-                  alt={pokemon.name}
-                  className="w-48 h-48 mx-auto"
-                />
+                <div className="w-48 h-48 mx-auto">
+                  <PokemonView {...pokemon} />
+                </div>
                 <div className="p-4">
                   <h2 className="text-xl font-semibold mb-2">{pokemon.name}</h2>
                 </div>

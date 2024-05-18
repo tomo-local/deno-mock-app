@@ -8,20 +8,26 @@ import {
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 
-export function makePokemonUrl({
+export function makePokemonApiUrl({
   type = "pokemon",
   id,
   limit = 20,
   offset = 0,
+  hasParam = true,
 }: {
   type: PokemonEndpointType;
   id?: number | string;
   limit?: number;
   offset?: number;
+  hasParam?: boolean;
 }): URL {
   const urlString = id ? `${BASE_URL}/${type}/${id}` : `${BASE_URL}/${type}`;
 
   const url = new URL(urlString);
+
+  if (!hasParam) {
+    return url;
+  }
 
   url.searchParams.set("limit", limit.toString());
   url.searchParams.set("offset", offset.toString());
@@ -32,14 +38,16 @@ export function makePokemonUrl({
 export function getPokemonModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
-  lang: string,
+  lang?: string,
 ): PokemonListItemCustom {
   lang = lang || "ja";
 
   return {
     id: pokemon.id.toString().padStart(4, "0"),
-    name: species.names.find((name) => name.language.name === lang)?.name || "",
+    name: species?.names?.find((name) => name.language.name === lang)?.name ||
+      pokemon.name,
     image: pokemon.sprites.front_default,
+    cry: pokemon.cries.latest,
   };
 }
 
@@ -47,7 +55,7 @@ export function getPokemonDetailModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
   types: PokemonType[],
-  lang: string,
+  lang?: string,
 ) {
   lang = lang || "ja";
 
