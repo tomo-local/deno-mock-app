@@ -5,7 +5,7 @@ on:
     types: [opened, edited]
 
 jobs:
-  set-pr:
+  setup-pr:
     runs-on: ubuntu-latest
     steps:
       - name: initial labeling
