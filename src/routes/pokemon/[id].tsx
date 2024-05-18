@@ -1,7 +1,7 @@
 import { PageProps } from "$fresh/server.ts";
 import { Handlers } from "$fresh/server.ts";
 import { getPokemonDetails } from "@/api/pokemon/details.ts";
-import { Pokemon } from "@/types/pokemon.ts";
+import Pagination from "@/components/common/Pagination.tsx";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
@@ -84,25 +84,18 @@ export default function PokemonList(props: PageProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2">
-          <div className="flex justify-center mt-4">
-            <a
-              href={`${props.url.origin}/pokemon/${prev}`}
-              style={{ visibility: id === 1 ? "hidden" : "visible" }}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-            >
-              前へ
-            </a>
-          </div>
-          <div className="flex justify-center mt-4">
-            <a
-              href={`${props.url.origin}/pokemon/${next}`}
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-            >
-              次へ
-            </a>
-          </div>
-        </div>
+        <Pagination
+          next={{
+            url: `${props.url.origin}/pokemon/${next}`,
+            isHidden: false,
+            text: `No.${next}へ`,
+          }}
+          prev={{
+            url: `${props.url.origin}/pokemon/${prev}`,
+            isHidden: id === 1,
+            text: `No.${prev}へ`,
+          }}
+        />
       </div>
     </div>
   );
