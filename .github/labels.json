@@ -1,0 +1,72 @@
+[
+  {
+    "color": "FC2C2B",
+    "description": "種別: 不具合の修正",
+    "name": "bug"
+  },
+  {
+    "color": "375E97",
+    "description": "種別: 新機能",
+    "name": "feature"
+  },
+  {
+    "color": "FFFFFF",
+    "description": "種別: ドキュメントの変更",
+    "name": "document"
+  },
+  {
+    "color": "E2601E",
+    "description": "種別: ツールやライブラリの変更",
+    "name": "chore"
+  },
+  {
+    "color": "AFD38D",
+    "description": "種別: リファクタリング",
+    "name": "refactor"
+  },
+  {
+    "color": "CCCCCC",
+    "description": "種別: 重複",
+    "name": "duplicate"
+  },
+  {
+    "color": "CCCCCC",
+    "description": "種別: 対応しない",
+    "name": "wontfix"
+  },
+  {
+    "color": "BDDEEC",
+    "description": "種別: 優先度低",
+    "name": "icebox"
+  },
+  {
+    "color": "003B46",
+    "description": "種別: リリース",
+    "name": "release"
+  },
+  {
+    "color": "5319E7",
+    "description": "種別: セキュリティアップデート",
+    "name": "dependencies"
+  },
+  {
+    "color": "F9C1CF",
+    "description": "未レビュー",
+    "name": "not-reviewed"
+  },
+  {
+    "color": "4B46E7",
+    "description": "下書き",
+    "name": "draft"
+  },
+  {
+    "color": "44CC11",
+    "description": "レビュー完了",
+    "name": "reviewed"
+  },
+  {
+    "color": "E7E7E7",
+    "description": "deno: デプロイ",
+    "name": "deno-deploy"
+  }
+]
