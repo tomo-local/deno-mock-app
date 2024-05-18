@@ -22,11 +22,8 @@ export default function PokemonList(props: PageProps) {
   const page = Number(props.url.searchParams.get("page")) || 1;
 
   return (
-    <div className="bg-gray-100">
+    <div>
       <div className="container py-8 mx-auto">
-        <h1 className="text-3xl font-semibold mb-8 text-center">
-          ポケモン図鑑
-        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {props?.data?.map((pokemon: PokemonListItemCustom) => (
             <div
