@@ -31,16 +31,20 @@ export async function getCustomPokemonList({
   const pokemonRes = await getPokemonList({ limit, offset });
 
   const pokemonData = await Promise.all(
-    pokemonRes.map((res) => fetch(res.url)),
+    pokemonRes.map((res) => fetch(res.url))
   ).then(async (res) => await Promise.all(res.map((res) => res.json())));
 
+  const pokemonUrls = pokemonData.map((pokemon) =>
+    pokemon.species.url
+  );
+
+  const executeSpecies = await Promise.all(
+    pokemonUrls.map((url) => fetch(url))
+  );
+
   const speciesData = await Promise.all(
-    pokemonRes.map((res) =>
-      fetch(
-        makePokemonUrl({ type: "pokemon-species", id: res.name }).toString(),
-      )
-    ),
-  ).then(async (res) => await Promise.all(res.map((res) => res.json())));
+    executeSpecies.filter((res) => res.ok).map((res) => res.json())
+  );
 
   return pokemonData.map((pokemon, index) => {
     return getPokemonModel(pokemon, speciesData[index]);

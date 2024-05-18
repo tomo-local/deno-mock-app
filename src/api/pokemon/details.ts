@@ -1,8 +1,12 @@
 import { getPokemonDetailModel, makePokemonUrl } from "@/helper/pokemon.ts";
 
 export async function getPokemonDetails(id: number) {
-  const pokemonUrl = makePokemonUrl({ type: "pokemon", id });
-  const speciesUrl = makePokemonUrl({ type: "pokemon-species", id });
+  const pokemonUrl = makePokemonUrl({ type: "pokemon", id, hasParam: false });
+  const speciesUrl = makePokemonUrl({
+    type: "pokemon-species",
+    id,
+    hasParam: false,
+  });
 
   const response = await Promise.all([
     fetch(pokemonUrl.toString()),
@@ -14,13 +18,12 @@ export async function getPokemonDetails(id: number) {
   }
 
   const [pokemon, species] = await Promise.all(
-    response.map((res) => res.json()),
+    response.map((res) => res.json())
   );
 
   const typeFetch = pokemon.types?.map(
-    (type: { type: { name: string; url: string } }) => fetch(type.type.url),
+    (type: { type: { name: string; url: string } }) => fetch(type.type.url)
   );
-
 
   const types = await Promise.all(typeFetch).then((res) =>
     Promise.all(res.map((r) => r.json()))

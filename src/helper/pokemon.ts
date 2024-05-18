@@ -13,15 +13,21 @@ export function makePokemonUrl({
   id,
   limit = 20,
   offset = 0,
+  hasParam = true
 }: {
   type: PokemonEndpointType;
   id?: number | string;
   limit?: number;
   offset?: number;
+  hasParam?: boolean;
 }): URL {
   const urlString = id ? `${BASE_URL}/${type}/${id}` : `${BASE_URL}/${type}`;
 
   const url = new URL(urlString);
+
+  if (!hasParam) {
+    return url;
+  }
 
   url.searchParams.set("limit", limit.toString());
   url.searchParams.set("offset", offset.toString());
@@ -36,10 +42,13 @@ export function getPokemonModel(
 ): PokemonListItemCustom {
   lang = lang || "ja";
 
+  // console.log(species);
+
   return {
     id: pokemon.id.toString().padStart(4, "0"),
-    name: species.names.find((name) => name.language.name === lang)?.name || "",
+    name: species?.names?.find((name) => name.language.name === lang)?.name || pokemon.name,
     image: pokemon.sprites.front_default,
+    cry: pokemon.cries.latest,
   };
 }
 
