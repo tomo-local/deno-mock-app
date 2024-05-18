@@ -7,6 +7,16 @@ export const handler: Handlers = {
   async GET(_req, ctx) {
     const id = Number(ctx.params.id);
 
+    if (!id) {
+      const headers = new Headers({
+        location: `${ctx.url.origin}/pokemon/list`,
+      });
+      return new Response(null, {
+        status: 302,
+        headers,
+      });
+    }
+
     const data = await getPokemonDetails(id);
 
     const resp = await ctx.render(data);
