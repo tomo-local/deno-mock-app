@@ -13,7 +13,7 @@ export function makePokemonApiUrl({
   id,
   limit = 20,
   offset = 0,
-  hasParam = true
+  hasParam = true,
 }: {
   type: PokemonEndpointType;
   id?: number | string;
@@ -44,7 +44,9 @@ export function getPokemonModel(
 
   return {
     id: pokemon.id.toString().padStart(4, "0"),
-    name: species?.names?.find((name) => name.language.name === lang)?.name || pokemon.name,
+    name:
+      species?.names?.find((name) => name.language.name === lang)?.name ||
+      pokemon.name,
     image: pokemon.sprites.front_default,
     cry: pokemon.cries.latest,
   };
@@ -54,7 +56,7 @@ export function getPokemonDetailModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
   types: PokemonType[],
-  lang?: string,
+  lang?: string
 ) {
   lang = lang || "ja";
 
@@ -63,7 +65,7 @@ export function getPokemonDetailModel(
     name: species.names.find((n) => n.language.name === lang)?.name || "",
     genera: species.genera.find((g) => g.language.name === lang)?.genus || "",
     flavor_text_entries: species.flavor_text_entries.filter(
-      (s) => s.language.name === lang,
+      (s) => s.language.name === lang
     ),
 
     images: pokemon.sprites,
