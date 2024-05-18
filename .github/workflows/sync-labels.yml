@@ -1,0 +1,22 @@
+name: Sync Labels
+on:
+  workflow_dispatch:
+  push:
+    branches: [labels/*]
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - run: yarn add -D @azu/github-label-setup
+      - name: Run github-label-setup
+        run: yarn github-label-setup --token ${{ secrets.GITHUB_TOKEN }} --labels .github/labels.json
