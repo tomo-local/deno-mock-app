@@ -17,4 +17,4 @@ jobs:
 
       - name: Run lint
         run:
-          cd src/ && deno lint --config
+          deno lint --config src/deno.json
