@@ -1,8 +1,8 @@
-import { getPokemonDetailModel, makePokemonUrl } from "@/helper/pokemon.ts";
+import { getPokemonDetailModel, makePokemonApiUrl } from "@/helper/pokemon.ts";
 
 export async function getPokemonDetails(id: number) {
-  const pokemonUrl = makePokemonUrl({ type: "pokemon", id, hasParam: false });
-  const speciesUrl = makePokemonUrl({
+  const pokemonUrl = makePokemonApiUrl({ type: "pokemon", id, hasParam: false });
+  const speciesUrl = makePokemonApiUrl({
     type: "pokemon-species",
     id,
     hasParam: false,

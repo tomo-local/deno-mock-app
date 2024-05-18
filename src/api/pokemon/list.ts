@@ -1,5 +1,5 @@
 import { PokemonListItem, PokemonListItemCustom } from "@/types/pokemon.ts";
-import { getPokemonModel, makePokemonUrl } from "@/helper/pokemon.ts";
+import { getPokemonModel, makePokemonApiUrl } from "@/helper/pokemon.ts";
 
 export async function getPokemonList({
   limit,
@@ -8,7 +8,7 @@ export async function getPokemonList({
   limit: number;
   offset: number;
 }): Promise<PokemonListItem[]> {
-  const url = makePokemonUrl({ type: "pokemon", limit, offset });
+  const url = makePokemonApiUrl({ type: "pokemon", limit, offset });
 
   const response = await fetch(url.toString());
 

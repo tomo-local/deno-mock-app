@@ -8,7 +8,7 @@ import {
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 
-export function makePokemonUrl({
+export function makePokemonApiUrl({
   type = "pokemon",
   id,
   limit = 20,
@@ -41,8 +41,6 @@ export function getPokemonModel(
   lang?: string,
 ): PokemonListItemCustom {
   lang = lang || "ja";
-
-  // console.log(species);
 
   return {
     id: pokemon.id.toString().padStart(4, "0"),
