@@ -3,6 +3,12 @@ name: Set Pull Request
 on:
   pull_request:
     types: [opened, edited]
+    branches:
+      - main
+      - develop
+      - feature/*
+      - release/*
+      - hotfix/*
 
 jobs:
   setup-pr:
