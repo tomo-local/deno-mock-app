@@ -17,10 +17,8 @@
   },
   "lint": {
     "rules": { "tags": ["fresh", "recommended"] },
-    "files": {
-      "include": ["**/*.ts", "**/*.tsx"],
-      "exclude": ["**/_fresh/*", "**/fresh.gen.ts"]
-    }
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["**/_fresh/*", "**/fresh.gen.ts"]
   },
   "exclude": ["**/_fresh/*"],
   "imports": {
