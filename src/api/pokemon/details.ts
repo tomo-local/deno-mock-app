@@ -1,4 +1,5 @@
 import { getPokemonDetailModel, makePokemonApiUrl } from "@/helper/pokemon.ts";
+import { Pokemon, PokemonSpecies } from "@/types/pokemon.ts";
 
 export async function getPokemonDetails(id: number) {
   const pokemonUrl = makePokemonApiUrl({
@@ -21,13 +22,12 @@ export async function getPokemonDetails(id: number) {
     throw new Error("Failed to fetch Pokemon details");
   }
 
-  const [pokemon, species] = await Promise.all(
-    response.map((res) => res.json()),
-  );
+  const responseJson = await Promise.all(response.map((res) => res.json()));
 
-  const typeFetch = pokemon.types?.map(
-    (type: { type: { name: string; url: string } }) => fetch(type.type.url),
-  );
+  const pokemon = responseJson[0] as Pokemon;
+  const species = responseJson[1] as PokemonSpecies;
+
+  const typeFetch = pokemon.types?.map((type) => fetch(type.type.url));
 
   const types = await Promise.all(typeFetch).then((res) =>
     Promise.all(res.map((r) => r.json()))

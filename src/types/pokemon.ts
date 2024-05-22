@@ -1,7 +1,6 @@
 export interface Pokemon {
   id: number;
   name: string;
-  types: string[];
   abilities: string[];
   height: number;
   weight: number;
@@ -22,6 +21,13 @@ export interface Pokemon {
     latest: string;
     legacy: string;
   };
+  types: {
+    slot: number;
+    type: {
+      name: string;
+      url: string;
+    };
+  }[];
 }
 
 export interface PokemonType {
