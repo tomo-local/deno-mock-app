@@ -59,7 +59,7 @@ export function getPokemonDetailModel(
   species: PokemonSpecies,
   types: PokemonType[],
   stats: PokemonStat[],
-  lang?: string
+  lang?: string,
 ): PokemonDetails {
   lang = lang || "ja";
 
