@@ -28,10 +28,14 @@ export async function getPokemonDetails(id: number) {
   const species = responseJson[1] as PokemonSpecies;
 
   const typeFetch = pokemon.types?.map((type) => fetch(type.type.url));
+  const statsFetch = pokemon.stats?.map((stat) => fetch(stat.stat.url));
 
   const types = await Promise.all(typeFetch).then((res) =>
     Promise.all(res.map((r) => r.json()))
   );
+  const stats = await Promise.all(statsFetch).then((res) =>
+    Promise.all(res.map((r) => r.json()))
+  );
 
-  return getPokemonDetailModel(pokemon, species, types);
+  return getPokemonDetailModel(pokemon, species, types, stats);
 }
