@@ -1,15 +1,12 @@
 name: Deploy
 on:
   push:
-    branches: [main, develop]
+    branches: main
   pull_request:
-    branches: [main, develop]
+    branches: main
 
 jobs:
   deploy:
-    if: >
-      contains(github.event.pull_request.labels.*.name, 'deno-deploy')
-
     name: Deploy
     runs-on: ubuntu-latest
 
