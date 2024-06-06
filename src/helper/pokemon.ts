@@ -1,11 +1,11 @@
 import {
   Pokemon,
+  PokemonDetails,
   PokemonEndpointType,
   PokemonListItemCustom,
   PokemonSpecies,
   PokemonStat,
   PokemonType,
-  PokemonDetails,
 } from "@/types/pokemon.ts";
 
 const BASE_URL = "https://pokeapi.co/api/v2";
@@ -40,14 +40,13 @@ export function makePokemonApiUrl({
 export function getPokemonModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
-  lang?: string
+  lang?: string,
 ): PokemonListItemCustom {
   lang = lang || "ja";
 
   return {
     id: pokemon.id.toString().padStart(4, "0"),
-    name:
-      species?.names?.find((name) => name.language.name === lang)?.name ||
+    name: species?.names?.find((name) => name.language.name === lang)?.name ||
       pokemon.name,
     image: pokemon.sprites.front_default,
     cry: pokemon.cries.latest,
@@ -75,7 +74,7 @@ export function getPokemonDetailModel(
     name: species.names.find((n) => n.language.name === lang)?.name || "",
     genera: species.genera.find((g) => g.language.name === lang)?.genus || "",
     flavor_text_entries: species.flavor_text_entries.filter(
-      (s) => s.language.name === lang
+      (s) => s.language.name === lang,
     ),
 
     images: pokemon.sprites,
@@ -94,8 +93,8 @@ export function getPokemonDetailModel(
         base_stat: stat.base_stat,
         effort: stat.effort,
         stat: {
-          name:
-            s.find((n) => n.en_name === stat.stat.name)?.name || stat.stat.name,
+          name: s.find((n) => n.en_name === stat.stat.name)?.name ||
+            stat.stat.name,
           url: stat.stat.url,
         },
       };

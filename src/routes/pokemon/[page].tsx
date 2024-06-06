@@ -20,7 +20,7 @@ export const handler: Handlers = {
 };
 
 export default function PokemonList(props: PageProps) {
-  const page = Number(props.params.page)
+  const page = Number(props.params.page);
 
   return (
     <div>

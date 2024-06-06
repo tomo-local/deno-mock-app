@@ -106,7 +106,6 @@ export interface PokemonStat {
       url: string;
     };
   }[];
-
 }
 
 export interface PokemonSpecies {
