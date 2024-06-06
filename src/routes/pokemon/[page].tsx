@@ -8,7 +8,7 @@ import Pagination from "@/components/common/Pagination.tsx";
 
 export const handler: Handlers = {
   async GET(_req, ctx) {
-    const page = ctx.url.searchParams.get("page") || 1;
+    const page = ctx.params.page || 1;
     const limit = Number(ctx.url.searchParams.get("limit")) || 20;
     const offset = (Number(page) - 1) * Number(limit);
 
@@ -20,7 +20,7 @@ export const handler: Handlers = {
 };
 
 export default function PokemonList(props: PageProps) {
-  const page = Number(props.url.searchParams.get("page")) || 1;
+  const page = Number(props.params.page);
 
   return (
     <div>
@@ -38,7 +38,7 @@ export default function PokemonList(props: PageProps) {
                   </span>
                   <div className="absolute top-0 right-0 px-2 rounded-md my-2">
                     <a
-                      href={`/pokemon/${pokemon.id}`}
+                      href={`/pokemon/details/${pokemon.id}`}
                       className="py-1 px-2 rounded-md bg-slate-500 text-white  hover:bg-slate-600"
                     >
                       詳細
@@ -57,12 +57,12 @@ export default function PokemonList(props: PageProps) {
         </div>
         <Pagination
           next={{
-            url: `/pokemon/list?page=${page + 1}`,
+            url: `/pokemon/${page + 1}`,
             isHidden: props.data.length < 20,
             text: "次へ",
           }}
           prev={{
-            url: `/pokemon/list?page=${page - 1}`,
+            url: `/pokemon/${page - 1}`,
             isHidden: page <= 1,
             text: "前へ",
           }}

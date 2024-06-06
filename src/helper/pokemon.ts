@@ -1,8 +1,10 @@
 import {
   Pokemon,
+  PokemonDetails,
   PokemonEndpointType,
   PokemonListItemCustom,
   PokemonSpecies,
+  PokemonStat,
   PokemonType,
 } from "@/types/pokemon.ts";
 
@@ -55,9 +57,17 @@ export function getPokemonDetailModel(
   pokemon: Pokemon,
   species: PokemonSpecies,
   types: PokemonType[],
+  stats: PokemonStat[],
   lang?: string,
-) {
+): PokemonDetails {
   lang = lang || "ja";
+
+  const s = stats.map((stat) => {
+    return {
+      en_name: stat.name,
+      name: stat.names.find((n) => n.language.name === "ja-Hrkt")?.name || "",
+    };
+  });
 
   return {
     id: pokemon.id.toString().padStart(4, "0"),
@@ -78,6 +88,16 @@ export function getPokemonDetailModel(
     height: pokemon.height,
     weight: pokemon.weight,
     base_experience: pokemon.base_experience,
-    stats: pokemon.stats,
+    stats: pokemon.stats.map((stat) => {
+      return {
+        base_stat: stat.base_stat,
+        effort: stat.effort,
+        stat: {
+          name: s.find((n) => n.en_name === stat.stat.name)?.name ||
+            stat.stat.name,
+          url: stat.stat.url,
+        },
+      };
+    }),
   };
 }
