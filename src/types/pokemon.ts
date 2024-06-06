@@ -1,23 +1,35 @@
 export interface Pokemon {
   id: number;
   name: string;
-  types: string[];
   abilities: string[];
   height: number;
   weight: number;
   base_experience: number;
   stats: {
-    hp: number;
-    attack: number;
-    defense: number;
-    speed: number;
-  };
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }[];
   sprites: {
     front_default: string;
     front_shiny: string;
     back_default: string;
     back_shiny: string;
   };
+  cries: {
+    latest: string;
+    legacy: string;
+  };
+  types: {
+    slot: number;
+    type: {
+      name: string;
+      url: string;
+    };
+  }[];
 }
 
 export interface PokemonType {
@@ -66,6 +78,34 @@ export interface PokemonType {
     name: string;
     url: string;
   };
+}
+
+export interface PokemonStat {
+  id: number;
+  name: string;
+  names: {
+    name: string;
+    language: {
+      name: string;
+      url: string;
+    };
+  }[];
+  game_index: number;
+  is_battle_only: boolean;
+  affecting_moves: {
+    change: number;
+    move: {
+      name: string;
+      url: string;
+    };
+  }[];
+  affecting_natures: {
+    increase: number;
+    nature: {
+      name: string;
+      url: string;
+    };
+  }[];
 }
 
 export interface PokemonSpecies {
@@ -165,6 +205,7 @@ export interface PokemonListItemCustom {
   id: string;
   name: string;
   image: string;
+  cry: string;
 }
 
 export interface PokemonListResponseCustom {
@@ -172,4 +213,43 @@ export interface PokemonListResponseCustom {
   next: string;
   previous: string;
   results: PokemonListItemCustom[];
+}
+
+export interface PokemonDetails {
+  id: string;
+  name: string;
+  abilities: string[];
+  genera: string;
+  flavor_text_entries: {
+    flavor_text: string;
+    language: {
+      name: string;
+      url: string;
+    };
+    version: {
+      name: string;
+      url: string;
+    };
+  }[];
+  height: number;
+  weight: number;
+  base_experience: number;
+  stats: {
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }[];
+  images: {
+    front_default: string;
+    front_shiny: string;
+    back_default: string;
+    back_shiny: string;
+  };
+  types: {
+    id: number;
+    name: string;
+  }[];
 }

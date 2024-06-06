@@ -1,0 +1,21 @@
+name: Set Pull Request
+
+on:
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - main
+      - develop
+      - feature/*
+      - release/*
+      - hotfix/*
+
+jobs:
+  setup-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: initial labeling
+        uses: andymckay/labeler@master
+        with:
+          add-labels: "not-reviewed, deno-deploy"
+          remove-labels: "reviewed"
